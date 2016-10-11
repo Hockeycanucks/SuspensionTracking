@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+
+<style>
+   th, td {
+      padding: 5px;
+   }
+   table {
+      font-size:15pt;
+   }
+</style>
+
+<body>
+
+<table style="width:100%">
+  <tr>
+     <td>Date:</td>
+     <td><input type="date" id="date"></td>
+  </tr>
+  <tr>
+     <td>Customer:</td>
+     <td><input type="text" id="cus"></td>
+  </tr>
+  <tr>
+     <td>Phone:</td>
+     <td><input type="text" id="cusPhone"></td>
+  </tr>
+  <tr>
+     <td>Email:</td>
+     <td><input type="text" id="cusEmail"></td>
+  </tr>
+  <tr>
+     <td>SRO #:</td>
+     <td><input type="text" id="sro"></td>
+  </tr>
+  <tr>   
+     <td>WO #:</td>
+     <td><input type="text" id="wo"></td>
+  </tr>
+  <tr>
+     <td>Location:</td>
+     <td><input type="text" id="location"></td>
+  </tr>
+  <tr>   
+     <td>Product:</td>
+     <td><input type="text" id="product"></td>
+  </tr>
+  <tr>   
+     <td>Problem Description:</td>
+     <td><input type="text" id="problem"></td>
+  </tr>
+  <tr>   
+     <td>RA #:</td>
+     <td><input type="text" id="ra"></td>
+  </tr>
+  
+  <tr>
+     <td>Status:</td>
+     <td><select id="status">
+        <option value="Off">Off</option>
+        <option value="Shipped">Shipped</option>
+        <option value="Arrived">Arrived</option>
+        <option value="Installed">Installed</option>
+        <option value="Complete">Complete</option>
+        <option value="New">New</option>
+     </select></td>
+     <td></td>
+  </tr>
+  
+</table>  
+
+<table style="width:100%">
+  <tr>
+     <td>
+     <button onmouseup="adder()">Add</button>
+     </td>
+     <td>
+     <button onmouseup="reset()">Reset</button>
+     </td>
+     <td>
+     <button onmouseup="closeDia()">Close</button>
+     </td>
+  </tr>
+  
+  </table>
+  
+  <script type="text/javascript">
+     var date = new Date();
+     
+     var day = date.getDate();
+     var month = date.getMonth() + 1;
+     var year = date.getFullYear();
+
+     if (month < 10) month = "0" + month;
+     if (day < 10) day = "0" + day;
+
+     var today = year + "-" + month + "-" + day;
+
+     document.getElementById('date').value = today;
+   </script>
+
+
+<script>
+  window.closeDia = function() {
+    google.script.host.close();
+  };
+  
+</script>
+  
+<script>
+  window.reset = function() {
+    google.script.run.launchAdder();
+  };
+</script>
+
+<script type="text/javascript">
+  window.adder = function() {
+  
+    var date = document.getElementById('date').value;
+    var product = document.getElementById('product').value;
+    var problem = document.getElementById('problem').value;
+    var ra = document.getElementById('ra').value;
+    var cus = document.getElementById('cus').value;
+    var cusPhone = document.getElementById('cusPhone').value;
+    var cusEmail = document.getElementById('cusEmail').value;
+    var sro = document.getElementById('sro').value;
+    var wo = document.getElementById('wo').value;
+    var status = document.getElementById('status').value;
+    var location = document.getElementById('location').value;
+    
+    google.script.run.addNewTop(date, location, product, problem, ra, cus, cusPhone, cusEmail, sro, wo, status);
+    //google.script.run.scrollLast();
+  };
+</script>
+
+</body>
+</html>
