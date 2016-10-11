@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+
+<body>
+
+<p>
+Enter the name of the new year.
+</p>
+
+<form action="action_page.php">
+  Sheet Name
+  <input type="text" name="year" id="year">
+</form>
+
+<br>
+<table>
+  <tr>
+    <td>
+      <button onmouseup="addSheet()">OK</button>
+    </td>
+    <td>
+      <button onmouseup="closeDia()">Close</button>
+    </td>
+  </tr>
+</table>
+
+<script>
+  window.closeDia = function() {
+    google.script.host.close();
+  };
+</script>
+
+<script>
+  window.addSheet = function() {
+    google.script.run.withSuccessHandler(google.script.host.close).setSheetName(document.getElementById("year").value);
+  };
+</script>
+
+</body>
+</html>
